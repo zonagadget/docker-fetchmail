@@ -1,7 +1,7 @@
 version: '2'
 services:
   fetchmail:
-    image: jeboehm/fetchmail
+    build: .
     restart: on-failure:50
     read_only: true
     networks:

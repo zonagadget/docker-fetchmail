@@ -3,11 +3,12 @@ MAINTAINER Jeffrey Boehm "jeff@ressourcenkonflikt.de"
 
 RUN apk --no-cache add fetchmail ca-certificates
 
-COPY rootfs/ /
 VOLUME /var/lib/fetchmail
+RUN chown fetchmail /var/lib/fetchmail
 
-RUN chown fetchmail /etc/fetchmailrc /var/lib/fetchmail && \
-    chmod 400 /etc/fetchmailrc
+ONBUILD COPY fetchmailrc /etc/fetchmailrc
+ONBUILD RUN chown fetchmail /etc/fetchmailrc && \
+            chmod 400 /etc/fetchmailrc
 
-USER fetchmail
-CMD ["fetchmail", "-d", "900", "-N", "-f", "/etc/fetchmailrc", "-vv"]
+ONBUILD USER fetchmail
+ONBUILD CMD ["fetchmail", "-d", "900", "-N", "-f", "/etc/fetchmailrc", "-vv"]
