@@ -1,0 +1,13 @@
+version: '2'
+services:
+  fetchmail:
+    image: jeboehm/fetchmail
+    restart: on-failure:50
+    read_only: true
+    networks:
+      - mail
+
+networks:
+  mail:
+    external:
+      name: mail_default
