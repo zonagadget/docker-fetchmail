@@ -11,4 +11,4 @@ ONBUILD RUN chown fetchmail /etc/fetchmailrc && \
             chmod 400 /etc/fetchmailrc
 
 ONBUILD USER fetchmail
-ONBUILD CMD ["fetchmail", "-d", "900", "-N", "-f", "/etc/fetchmailrc", "-vv"]
+ONBUILD CMD ["fetchmail", "-d", "300", "-N", "-f", "/etc/fetchmailrc", "-vv"]
